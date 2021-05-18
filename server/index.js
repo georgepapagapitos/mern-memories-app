@@ -8,10 +8,10 @@ import postRouter from './routes/post.router.js';
 
 const app = express();
 
-app.use('/api/v1/posts', postRouter);
-
 app.use(cors());
 app.use(express.json());
+
+app.use('/api/v1/posts', postRouter);
 
 const dbUrl = process.env.DB_CONNECTION_URL;
 const port = process.env.PORT;
