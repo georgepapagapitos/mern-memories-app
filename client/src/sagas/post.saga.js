@@ -19,7 +19,18 @@ function* createPost(action) {
   }
 }
 
+function* updatePost(action) {
+  console.log('action', action.payload);
+  try {
+    yield axios.patch(`/api/v1/posts/${action.payload.currentId}`, action.payload.postData);
+    yield put({ type: 'FETCH_ALL_POSTS' });
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
 export default function* postsSaga() {
   yield takeLatest('FETCH_ALL_POSTS', fetchAllPosts);
   yield takeLatest('CREATE_POST', createPost);
+  yield takeLatest('UPDATE_POST', updatePost);
 }

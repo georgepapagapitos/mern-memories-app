@@ -8,6 +8,7 @@ import rootReducer from './reducers/root.reducer';
 import rootSaga from './sagas/root.saga';
 
 import App from './App';
+import './index.css';
 
 const sagaMiddleware = createSagaMiddleware();
 
