@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSelector } from 'react-redux';
 
 import Post from './Post/Post';
@@ -9,8 +8,6 @@ function Posts() {
 
   const classes = useStyles();
   const posts = useSelector((store) => store.posts);
-
-  console.log('posts', posts)
 
   return (
     <div>

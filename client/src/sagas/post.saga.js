@@ -10,6 +10,16 @@ function* fetchAllPosts() {
   }
 }
 
+function* createPost(action) {
+  try {
+    yield axios.post('/api/v1/posts', action.payload);
+    yield put({ type: 'FETCH_ALL_POSTS' });
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
 export default function* postsSaga() {
   yield takeLatest('FETCH_ALL_POSTS', fetchAllPosts);
+  yield takeLatest('CREATE_POST', createPost);
 }
