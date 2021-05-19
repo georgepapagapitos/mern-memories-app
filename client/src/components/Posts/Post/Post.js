@@ -1,7 +1,7 @@
 import useStyles from './styles';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, Divider } from '@material-ui/core';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography, Divider, Badge } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -29,17 +29,16 @@ function Post({ post, setCurrentId }) {
       <Typography className={classes.title} variant="h5" gutterBottom>{post.title}</Typography>
       <Divider variant="middle" />
       <CardContent>
-        <Typography variant="body2" gutterBottom>{post.message}</Typography>
+        <Typography variant="body2" color="textSecondary" component="p">{post.message}</Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" onClick={() => { }}>
-          <ThumbUpAltIcon fontSize="small" />
-            Like
-            {post.likeCount}
+        <Button size="small" color="primary" onClick={() => dispatch({ type: 'LIKE_POST', payload: { id: post._id } })}>
+          <Badge badgeContent={post.likeCount} color="secondary">
+            <ThumbUpAltIcon fontSize="large" />
+          </Badge>
         </Button>
         <Button size="small" color="secondary" onClick={() => dispatch({ type: 'DELETE_POST', payload: { id: post._id } })}>
-          <DeleteIcon fontSize="small" />
-          Delete
+          <DeleteIcon fontSize="large" />
         </Button>
       </CardActions>
     </Card>
