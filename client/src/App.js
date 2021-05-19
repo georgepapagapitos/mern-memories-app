@@ -12,11 +12,11 @@ function App() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const [currentId, setCurrentId] = useState(null)
+  const [currentId, setCurrentId] = useState(null);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_ALL_POSTS' });
-  }, [dispatch]);
+  }, [currentId, dispatch]);
 
   return (
     <Container maxwidth="lg">

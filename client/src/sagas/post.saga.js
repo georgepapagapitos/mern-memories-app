@@ -6,7 +6,7 @@ function* fetchAllPosts() {
     const posts = yield axios.get('/api/v1/posts');
     yield put({ type: 'SET_POSTS', payload: posts.data });
   } catch (error) {
-    console.error(error.message);
+    console.error(error);
   }
 }
 
@@ -15,17 +15,25 @@ function* createPost(action) {
     yield axios.post('/api/v1/posts', action.payload);
     yield put({ type: 'FETCH_ALL_POSTS' });
   } catch (error) {
-    console.error(error.message);
+    console.error(error);
   }
 }
 
 function* updatePost(action) {
-  console.log('action', action.payload);
   try {
     yield axios.patch(`/api/v1/posts/${action.payload.currentId}`, action.payload.postData);
     yield put({ type: 'FETCH_ALL_POSTS' });
   } catch (error) {
-    console.error(error.message);
+    console.error(error);
+  }
+}
+
+function* deletePost(action) {
+  try {
+    yield axios.delete(`/api/v1/posts/${action.payload.id}`);
+    yield put({ type: 'FETCH_ALL_POSTS' });
+  } catch (error) {
+    console.error(error);
   }
 }
 
@@ -33,4 +41,5 @@ export default function* postsSaga() {
   yield takeLatest('FETCH_ALL_POSTS', fetchAllPosts);
   yield takeLatest('CREATE_POST', createPost);
   yield takeLatest('UPDATE_POST', updatePost);
+  yield takeLatest('DELETE_POST', deletePost);
 }

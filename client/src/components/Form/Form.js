@@ -38,14 +38,24 @@ function Form({ currentId, setCurrentId }) {
         payload: postData
       });
     }
+    clearForm();
   }
 
-  const clearForm = () => { console.log('clear'); }
+  const clearForm = () => {
+    setCurrentId(null);
+    setPostData({
+      author: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: ""
+    });
+  }
 
   return (
     <Paper className={classes.paper}>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-        <Typography variant="h6">Add a Memory</Typography>
+        <Typography variant="h6">{currentId ? 'Edit' : 'Create'} a Memory</Typography>
         <TextField name="author" variant="outlined" label="Author" fullWidth value={postData.author} onChange={(event) => setPostData({ ...postData, author: event.target.value })} />
         <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(event) => setPostData({ ...postData, title: event.target.value })} />
         <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} onChange={(event) => setPostData({ ...postData, message: event.target.value })} />
@@ -60,4 +70,4 @@ function Form({ currentId, setCurrentId }) {
   );
 }
 
-export default Form
+export default Form;
