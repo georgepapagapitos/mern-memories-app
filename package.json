@@ -17,8 +17,11 @@
   },
   "homepage": "https://github.com/georgepapagapitos/mern-memories-app#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.2",
     "express": "^4.17.1",
-    "nodemon": "^2.0.7"
+    "mongoose": "^5.12.9"
   },
   "heroku-run-build-script": true
 }
