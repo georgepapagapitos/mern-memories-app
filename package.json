@@ -18,5 +18,6 @@
   "homepage": "https://github.com/georgepapagapitos/mern-memories-app#readme",
   "dependencies": {
     "nodemon": "^2.0.7"
-  }
+  },
+  "heroku-run-build-script": true
 }
